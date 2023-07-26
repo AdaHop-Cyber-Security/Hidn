@@ -1,2 +1,2 @@
 # Hidn
-Powershell Obfuscator
+Powershell Obfuscator written in C
