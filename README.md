@@ -1,2 +1,3 @@
 # Hidn
-Powershell Obfuscator written in C
+Powerfull Powershell obfuscator
+Complile and run with -r (input-file) -w (output-file)
