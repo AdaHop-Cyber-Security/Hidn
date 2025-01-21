@@ -1,5 +1,8 @@
 # Hidn
-Powerfull Powershell obfuscator - DO NOT UPLOAD TO VIRUSTOTAL.COM OR EQUIVALENT!
+
+Updated version of the provided C obfuscator code with decryption functionality added. This version includes an option to decrypt an obfuscated PowerShell script by applying the same XOR-based encryption key. 
+
+DO NOT UPLOAD TO VIRUSTOTAL.COM OR EQUIVALENT!
 
 ---
 
