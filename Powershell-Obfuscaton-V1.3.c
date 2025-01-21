@@ -3,21 +3,18 @@
 #include <string.h>
 #include <time.h>
 
-// Function to encrypt the PowerShell script strings
-void encryptStrings(char* script) {
-    // Advanced encryption algorithm (you can use any secure encryption library here)
-    // For demonstration purposes, we will use a simple XOR-based encryption with a random key
-    char key = rand() % 256;
+#define KEY 123  // Simple XOR encryption key, change this to a secure key
+
+// Function to encrypt or decrypt the PowerShell script strings
+void xorEncryptDecrypt(char* script) {
     size_t len = strlen(script);
     for (size_t i = 0; i < len; ++i) {
-        script[i] = script[i] ^ key;
+        script[i] = script[i] ^ KEY;
     }
 }
 
 // Function to rename PowerShell script variables
 void renameVariables(char* script) {
-    // Replace PowerShell variables with randomly generated names
-    // For simplicity, we'll use single-character variable names
     for (char c = 'a'; c <= 'z'; ++c) {
         char varName[3];
         snprintf(varName, sizeof(varName), "$%c", c);
@@ -35,8 +32,6 @@ void renameVariables(char* script) {
 
 // Function to obfuscate control flow by introducing junk loops and conditionals
 void obfuscateControlFlow(char* script) {
-    // Introduce random junk loops and conditionals to confuse analysis
-    // You can implement more sophisticated transformations based on the script's structure
     const char* loopTemplate = "for ($i=0; $i<%d; ++$i) { }\n";
     const char* conditionalTemplate = "if (%s) { }\n";
 
@@ -44,7 +39,7 @@ void obfuscateControlFlow(char* script) {
     int scriptLen = strlen(script);
 
     for (int i = 0; i < numTransformations; ++i) {
-        int transformType = rand() % 2; // 0 for loop, 1 for conditional
+        int transformType = rand() % 2;
 
         if (transformType == 0) {
             int numIterations = rand() % 10 + 1;
@@ -74,7 +69,6 @@ void obfuscateControlFlow(char* script) {
 
 // Function to perform code restructuring
 void restructureCode(char* script) {
-    // Add random comments, line breaks, and indentation to make the script less readable
     int len = strlen(script);
     int numLineBreaks = rand() % 5 + 1;
     for (int i = 0; i < numLineBreaks; ++i) {
@@ -84,7 +78,6 @@ void restructureCode(char* script) {
         script[insertPos + 1] = '/';
     }
 
-    // Add random indentation
     int numIndentations = rand() % 5 + 1;
     for (int i = 0; i < numIndentations; ++i) {
         int insertPos = rand() % len;
@@ -93,45 +86,84 @@ void restructureCode(char* script) {
     }
 }
 
-// Function to obfuscate the PowerShell script
-void obfuscatePowerShellScript(const char* inputPath, const char* outputPath) {
-    FILE* inputFile = fopen(inputPath, "r");
-    FILE* outputFile = fopen(outputPath, "w");
+// Function to read script content from a file
+char* readScriptFile(const char* filePath, long* scriptSize) {
+    FILE* file = fopen(filePath, "r");
+    if (file == NULL) {
+        printf("Error opening file: %s\n", filePath);
+        return NULL;
+    }
 
-    if (inputFile == NULL || outputFile == NULL) {
-        printf("Error opening files\n");
+    fseek(file, 0, SEEK_END);
+    *scriptSize = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
+    char* script = (char*)malloc(*scriptSize + 1);
+    fread(script, *scriptSize, 1, file);
+    script[*scriptSize] = '\0';
+
+    fclose(file);
+    return script;
+}
+
+// Function to write script content to a file
+void writeScriptFile(const char* filePath, const char* script) {
+    FILE* file = fopen(filePath, "w");
+    if (file == NULL) {
+        printf("Error writing to file: %s\n", filePath);
+        return;
+    }
+    fputs(script, file);
+    fclose(file);
+}
+
+// Function to obfuscate or deobfuscate the script
+void processScript(const char* inputPath, const char* outputPath, int decrypt) {
+    long scriptSize;
+    char* script = readScriptFile(inputPath, &scriptSize);
+    if (script == NULL) {
         return;
     }
 
-    // Read the entire script into memory
-    fseek(inputFile, 0, SEEK_END);
-    long scriptSize = ftell(inputFile);
-    fseek(inputFile, 0, SEEK_SET);
-    char* script = (char*)malloc(scriptSize + 1);
-    fread(script, scriptSize, 1, inputFile);
-    script[scriptSize] = '\0';
+    srand((unsigned int)time(NULL));
 
-    // Perform obfuscation steps
-    srand((unsigned int)time(NULL)); // Seed the random number generator
-    encryptStrings(script);
-    renameVariables(script);
-    obfuscateControlFlow(script);
-    restructureCode(script);
+    if (decrypt) {
+        xorEncryptDecrypt(script);  // Decrypt
+    } else {
+        xorEncryptDecrypt(script);  // Encrypt
+        renameVariables(script);
+        obfuscateControlFlow(script);
+        restructureCode(script);
+    }
 
-    // Write the obfuscated script to the output file
-    fputs(script, outputFile);
-
-    fclose(inputFile);
-    fclose(outputFile);
+    writeScriptFile(outputPath, script);
     free(script);
 }
 
-int main() {
-    const char* inputFilePath = "input.ps1";     // Replace with your input PowerShell file path
-    const char* outputFilePath = "output.ps1";   // Replace with the desired output obfuscated file path
+// Main function to handle obfuscation and decryption
+int main(int argc, char* argv[]) {
+    if (argc != 4) {
+        printf("Usage: %s <input file> <output file> <mode>\n", argv[0]);
+        printf("Mode: 0 = Obfuscate, 1 = Deobfuscate\n");
+        return 1;
+    }
 
-    obfuscatePowerShellScript(inputFilePath, outputFilePath);
-    printf("Obfuscation complete.\n");
+    const char* inputFilePath = argv[1];
+    const char* outputFilePath = argv[2];
+    int mode = atoi(argv[3]);
+
+    if (mode == 0) {
+        printf("Obfuscating script...\n");
+        processScript(inputFilePath, outputFilePath, 0);
+        printf("Obfuscation complete. Output saved to %s\n", outputFilePath);
+    } else if (mode == 1) {
+        printf("Deobfuscating script...\n");
+        processScript(inputFilePath, outputFilePath, 1);
+        printf("Decryption complete. Output saved to %s\n", outputFilePath);
+    } else {
+        printf("Invalid mode. Use 0 for obfuscation or 1 for decryption.\n");
+        return 1;
+    }
 
     return 0;
 }
