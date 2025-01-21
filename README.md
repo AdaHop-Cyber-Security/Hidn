@@ -31,7 +31,7 @@ obfuscator.exe input.ps1 output_obfuscated.ps1 0
 # Decryption:
 
 To deobfuscate the script:
-./obfuscator output_obfuscated.ps1 output_decrypted.ps1 1
+./obfuscator output_obfuscated.ps1 output_decrypted.ps1 1 
 
 
 # Example:
