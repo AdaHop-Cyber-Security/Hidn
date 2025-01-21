@@ -58,7 +58,7 @@ Explanation of Changes and Features:
   
 --------------------------------------------------------------------------------------------------------------------------------
 
-#How to Compile V2.0
+# How to Compile V2.0
 
 Linux/macOS (with GCC installed):
 gcc obfuscator.c -o obfuscator
@@ -68,7 +68,7 @@ Windows (with MinGW or similar):
 gcc obfuscator.c -o obfuscator.exe
     
 
-How to Run
+# How to Run
 
     Obfuscation (Mode = 0)
     
@@ -81,7 +81,7 @@ How to Run
     --base64 (optional): Adds a second layer of Base64 encoding on top of XOR.
     
 
-Example:
+# Example:
 
 ./obfuscator input.ps1 output.ps1 0 --base64
 
@@ -94,7 +94,7 @@ Deobfuscation (Mode = 1)
     1: Indicates deobfuscation mode.
     --base64 (optional): Applies Base64 decoding before the XOR decryption if the original script was obfuscated with --base64.
 
-Example:
+# Example:
 
     ./obfuscator output.ps1 restored.ps1 1 --base64
 
