@@ -17,7 +17,7 @@ gcc obfuscator.c -o obfuscator.exe
 
 ---
 
-# How to Use the Program
+# Usage
 
 Obfuscation:
 
@@ -39,7 +39,7 @@ obfuscator.exe output_obfuscated.ps1 output_decrypted.ps1 1
 
 ---
 
-# Explanation of Changes and Features:
+# Changes and Features:
 
 1. Encryption and Decryption:
     
