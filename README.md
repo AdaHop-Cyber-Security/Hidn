@@ -17,9 +17,9 @@ gcc obfuscator.c -o obfuscator.exe
 
 ---
 
-How to Use the Program
+# How to Use the Program
 
-# Obfuscation:
+Obfuscation:
 
 To obfuscate the script:
 ./obfuscator input.ps1 output_obfuscated.ps1 0
