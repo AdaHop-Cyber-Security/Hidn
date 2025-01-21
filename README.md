@@ -58,8 +58,7 @@ Explanation of Changes and Features:
   
 --------------------------------------------------------------------------------------------------------------------------------
 
-How to Compile V2.0
-
+#How to Compile V2.0
 
 Linux/macOS (with GCC installed):
 gcc obfuscator.c -o obfuscator
