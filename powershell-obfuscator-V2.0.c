@@ -4,6 +4,7 @@
 #include <time.h>
 
 /**
+ * Written by (Pin3apple) 
  * This obfuscator and deobfuscator provides:
  * 1. Multiple layers of encryption (XOR + optional Base64).
  * 2. Additional obfuscation techniques:
