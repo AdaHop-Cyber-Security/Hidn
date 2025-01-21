@@ -6,7 +6,7 @@ DO NOT UPLOAD TO VIRUSTOTAL.COM OR EQUIVALENT!
 
 ---
 
-Compile:
+# Compile:
 
 On Linux/macOS:
 gcc obfuscator.c -o obfuscator
@@ -19,27 +19,27 @@ gcc obfuscator.c -o obfuscator.exe
 
 How to Use the Program
 
-Obfuscation:
+# Obfuscation:
 
 To obfuscate the script:
 ./obfuscator input.ps1 output_obfuscated.ps1 0
 
-Example:
+# Example:
 obfuscator.exe input.ps1 output_obfuscated.ps1 0
 
 
-Decryption:
+# Decryption:
 
 To deobfuscate the script:
 ./obfuscator output_obfuscated.ps1 output_decrypted.ps1 1
 
 
-Example:
+# Example:
 obfuscator.exe output_obfuscated.ps1 output_decrypted.ps1 1
 
 ---
 
-Explanation of Changes and Features:
+# Explanation of Changes and Features:
 
 1. Encryption and Decryption:
     
