@@ -2,7 +2,7 @@
 
 Updated version of the provided C obfuscator code with decryption functionality added. This version includes an option to decrypt an obfuscated PowerShell script by applying the same XOR-based encryption key. 
 
-DO NOT UPLOAD TO VIRUSTOTAL.COM OR EQUIVALENT!
+This script is for educational purposes only. DO NOT UPLOAD TO VIRUSTOTAL.COM OR EQUIVALENT! I am not responsible for your actions, misusage of this script is a criminal offense. Both parties should always sign an agreement beforehand.
 
 ---
 
@@ -57,16 +57,6 @@ obfuscator.exe output_obfuscated.ps1 output_decrypted.ps1 1
     - Junk code insertion.
   
 --------------------------------------------------------------------------------------------------------------------------------
-
-# How to Compile V2.0
-
-Linux/macOS (with GCC installed):
-gcc obfuscator.c -o obfuscator
-
-
-Windows (with MinGW or similar):
-gcc obfuscator.c -o obfuscator.exe
-    
 
 # How to Run
 
@@ -124,3 +114,7 @@ Features and Notes
     Limitations
         Advanced reverse-engineers can still decompile or manually analyze obfuscated scripts.
         This tool is best used as an additional layer of defense.
+
+    
+Th
+I am not responsible for your actions
