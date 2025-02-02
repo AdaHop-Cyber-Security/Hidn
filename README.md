@@ -1,6 +1,4 @@
-# Obfuscator & Deobfuscator
-
-This repository contains a powerfull obfuscator and deobfuscator for PowerShell scripts. It applies multiple layers of encryption and obfuscation techniques to help mask your code. The tool is written in C and uses basic XOR encryption, with an optional additional Base64 encoding layer. It also includes extra obfuscation transformations such as variable renaming, control flow manipulation (junk loops, conditionals, fake functions), and code restructuring.
+# Hidn
 
 ## Features
 
