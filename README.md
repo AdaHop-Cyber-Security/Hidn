@@ -109,7 +109,3 @@ This project is provided "as is" without any warranty. Use at your own risk.
 ## Acknowledgments
 
 Written by Pin3apple – feel free to fork, modify, and contribute!
-
----
-
-You can adjust the README content as needed. Happy coding!
