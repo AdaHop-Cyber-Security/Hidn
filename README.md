@@ -116,5 +116,3 @@ Features and Notes
         This tool is best used as an additional layer of defense.
 
     
-Th
-I am not responsible for your actions
