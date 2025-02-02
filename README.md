@@ -18,7 +18,7 @@
 
 ## Requirements
 
-- GCC or another C compiler
+GCC or another C compiler
 
 ## Compilation
 
